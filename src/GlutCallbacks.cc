@@ -1,5 +1,6 @@
 #include <BA.hh>
 #include <BA/GlutCallbacks.hh>
+#include <cctype>
 
 // extern Scene *scene;
 
@@ -11,11 +12,16 @@ void BA::glutCbkDisplay(void) {
   // XXX Stub render for now
   glutSolidCube(4);
   
+  glFlush();
+  glutSwapBuffers();
   glutPostRedisplay();
 }
 
-void BA::glutCbkKeyboard(uchar, int, int) {
-
+void BA::glutCbkKeyboard(uchar key, int x, int y) {
+  switch(std::tolower(key)) {
+    case 'q':
+	  exit(0);
+  }
 }
 
 void BA::glutCbkSpecialKeys(int, int, int) {
