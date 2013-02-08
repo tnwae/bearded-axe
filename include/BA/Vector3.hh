@@ -123,7 +123,7 @@ namespace BA {
       }
 
       std::string toString() {
-	 std::stringstream ss(std::stringstream::in);
+	 std::stringstream ss(std::stringstream::out);
 	 ss << "(" << x << ", " << y << ", " << z << ")";
 	 return ss.str();
       }
