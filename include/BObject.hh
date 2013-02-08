@@ -7,7 +7,7 @@
 class BObject {
 public:
    virtual std::string toString() {
-      std::stringstream ss(std::stringstream::in);
+      std::stringstream ss(std::stringstream::out);
       ss << "BObject: " << this;
       return ss.str();
    }
