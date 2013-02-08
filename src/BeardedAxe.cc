@@ -36,8 +36,7 @@ int main(int argc, char *argv[]) {
 
   glutDisplayFunc(BA::glutCbkDisplay);
   glutReshapeFunc(BA::glutCbkReshape);
-  //glutKeyboardFunc(BA::glutCbkKeyboard);
-  glutKeyboardFunc(NULL);
+  glutKeyboardFunc(BA::glutCbkKeyboard);
   //glutSpecialFunc(BA::glutCbkSpecialKeys);
   glutSpecialFunc(NULL);
   //glutMouseFunc(BA::glutCbkMouse);
