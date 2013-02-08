@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(0., 8., 8.,
+  gluLookAt(8., 8., 8.,
             0., 0., 0.,
             0., 1., 0.);
 
