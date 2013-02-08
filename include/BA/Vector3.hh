@@ -64,7 +64,7 @@ namespace BA {
 	 return *this;
       }
 
-      Vector3<T> &operator*=(const Vector3<T> &rhs) {
+      Vector3<T> operator*=(const Vector3<T> &rhs) {
 	 Vector3<T> crossprod;
 	 
 	 if(this != &rhs) {
@@ -88,7 +88,7 @@ namespace BA {
 	 return Vector3(*this) *= rhs;
       }
 
-      Vector3<T> &operator*(const Vector3<T> &rhs) {
+      Vector3<T> operator*(const Vector3<T> &rhs) {
 	 return Vector3(*this) *= rhs;
       }
 
@@ -113,7 +113,7 @@ namespace BA {
 	 return dprod;
       }
 
-      Vector3<T> &normalize() {
+      Vector3<T> normalize() {
 	 Vector3<T> retval(0, 0, 0);
 	 T normal = norm();
 	 retval.x = x / normal;
