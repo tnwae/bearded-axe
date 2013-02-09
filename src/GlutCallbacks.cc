@@ -10,7 +10,7 @@ void BA::glutCbkDisplay(void) {
 
   // scene->render();
   // XXX Stub render for now
-  glutSolidCube(4);
+  glutSolidTeapot(4);
   
   glFlush();
   glutSwapBuffers();
