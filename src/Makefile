@@ -3,7 +3,7 @@ LXXFLAGS=-g -lm -lGL -lGLU -lglut
 OBJS=BeardedAxe.o GlutCallbacks.o
 
 all: $(OBJS)
-	$(CXX) -I../include -o ba $(LXXFLAGS) $(OBJS)
+	$(CXX) -I../include -o ba $(OBJS) $(LXXFLAGS) 
 
 .SUFFIXES: .cc.o
 $*.o: $*.cc
