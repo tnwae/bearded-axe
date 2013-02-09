@@ -4,7 +4,7 @@
 #include <cmath>
 
 namespace BA {
-  template <typename T> class Vector3 {
+  template <typename T = float> class Vector3 {
     public:
       Vector3<T>() {
         x = (T) 0;
