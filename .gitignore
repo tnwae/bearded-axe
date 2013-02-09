@@ -5,9 +5,15 @@
 
 # Compiled Dynamic libraries
 *.so
+*.dll
 *.dylib
 
 # Compiled Static libraries
 *.lai
 *.la
 *.a
+
+# Executables
+*.exe
+ba
+a.out
