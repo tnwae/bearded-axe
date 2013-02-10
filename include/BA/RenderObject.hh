@@ -3,6 +3,7 @@
 
 #include <BA.hh>
 #include <BObject.hh>
+#include "Vector3.hh"
 
 #include <iostream>
 #include <utility>
@@ -18,6 +19,9 @@ namespace BA {
     Vector3<float> *getFacetAt(int);
     Vector3<float> *getSurfaceNormalAt(int);
     Vector3<float> *getVertexNormalAt(int);
+
+    int getVertexCount();
+    int getFacetCount();
 
     Vector3<float> getMinCoord();
     Vector3<float> getMaxCoord();
@@ -71,6 +75,8 @@ namespace BA {
 
     // BOUND SHADER
     GLuint shaderObject;
+
+    int loadGeometryFromFile(std::string);
   };
 }
 
