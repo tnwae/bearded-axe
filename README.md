@@ -1,11 +1,21 @@
 # About Bearded Axe
 
-A couple years ago, my last college project was to write an OpenGL rendering
-program in C.  While it worked out great (although the renders didn't look
-so good since I suck at shader programming), I've decided to comb through
-the old code and write a C++ version that incorporates code by other people.
-In particular, I hope to add support for several mesh formats and to write
-a better scene description language.
+Bearded Axe is a simple generic OpenGL renderer written in clean, pure
+C++.  I aim to use as few plain-C features as possible.
+
+Features BA will have (a preliminary list):
+
+- A clean, modular, object-oriented design amenable to my slim driver or
+  another driver program
+- Support for at least OFF, OBJ, and PLY mesh formats
+- Support for TGA and SGI texture formats
+- Support for per-object and per-scene GLSL shaders
+- 100% free, open source software
+
+Features BA might have:
+
+- A clear, friendly scene description language
+- A Lua scripting bridge ([Lua][www.lua.org] builds cleanly as standard C++.)
 
 Bearded Axe is licensed under the GPLv3.
 
