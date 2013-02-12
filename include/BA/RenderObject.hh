@@ -14,30 +14,23 @@ namespace BA {
   public:
     RenderObject(std::string, std::string, RenderType);
     ~RenderObject();
-    
-    Vector3<float> *getVertexAt(int);
-    Vector3<float> *getFacetAt(int);
-    Vector3<float> *getSurfaceNormalAt(int);
-    Vector3<float> *getVertexNormalAt(int);
 
-    int getVertexCount();
-    int getFacetCount();
+//    int getVertexCount();
+//    int getFacetCount();
 
-    Vector3<float> getMinCoord();
-    Vector3<float> getMaxCoord();
-    float getBoundingSphereRadius();
+//    Vector3<float> getMinCoord();
+//    Vector3<float> getMaxCoord();
+//    float getBoundingSphereRadius();
 
-    std::pair<uint, uint> *getTextureSize();
-    GLuint getTextureObject();
+//    std::pair<uint, uint> *getTextureSize();
+//    GLuint getTextureObject();
 
-    float *getAmbientLight();
-    float *getDiffuseLight();
-    float *getSpecularLight();
-    float getShininess();
+//    float *getAmbientLight();
+//    float *getDiffuseLight();
+//    float *getSpecularLight();
+//    float getShininess();
 
-    GLuint getShaderObject();
-
-    GLuint getDisplayList();
+//    GLuint getShaderObject();
 
     std::string toString();
 
@@ -77,6 +70,10 @@ namespace BA {
     GLuint shaderObject;
 
     int loadGeometryFromFile(std::string);
+    Vector3<float> *getVertexAt(int);
+    Vector3<float> *getFacetAt(int);
+    Vector3<float> *getSurfaceNormalAt(int);
+    Vector3<float> *getVertexNormalAt(int);
   };
 }
 
