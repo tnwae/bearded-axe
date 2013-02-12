@@ -15,7 +15,7 @@ Features BA will have (a preliminary list):
 Features BA might have:
 
 - A clear, friendly scene description language
-- A Lua scripting bridge ([Lua][www.lua.org] builds cleanly as standard C++.)
+- A Lua scripting bridge ([Lua](www.lua.org) builds cleanly as standard C++.)
 
 Bearded Axe is licensed under the GPLv3.
 
