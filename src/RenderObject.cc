@@ -14,6 +14,9 @@ namespace BA {
       surfaceNormals = new std::vector<Vector3<float> *>;
       vertexNormals = new std::vector<Vector3<float> *>;
 
+      loadGeometryFromFile(_filename);
+
+      
    }
 
    RenderObject::~RenderObject() {
@@ -44,11 +47,27 @@ namespace BA {
       delete vertexNormals;
    }
 
-   int RenderObject::getVertexCount() {
-      return vertices->size();
-   }
-
    std::string RenderObject::toString() {
       return name;
+   }
+
+   int RenderObject::loadGeometryFromFile(std::string where) {
+      return -1;
+   }
+
+   Vector3<float> *getVertexAt(int _subscript) {
+      return vertices->at(_subscript);
+   }
+
+   Vector3<float> *getFacetAt(int _subscript) {
+      return vertices->at(_subscript);
+   }
+
+   Vector3<float> *getSurfaceNormal(int _subscript) {
+      return surfaceNormals->at(_subscript);
+   }
+
+   Vector3<float> *getVertexNormal(int _subscript) {
+      return vertexNormals->at(_subscript);
    }
 }
