@@ -22,6 +22,12 @@ namespace BA {
         z = _z;
       }
 
+      Vector3<T> (T *array) {
+	x = array[0];
+	y = array[1];
+	z = array[2]; 
+      }
+
       Vector3<T> &operator=(const Vector3<T> &rhs) {
         if(this != &rhs) {
           rhs.x = x;
@@ -122,6 +128,14 @@ namespace BA {
         std::stringstream ss(std::stringstream::out);
         ss << "(" << x << ", " << y << ", " << z << ")";
         return ss.str();
+      }
+
+      T *toArray() {
+	T *array = new T[3];
+	array[0] = x; 
+	array[1] = y;
+	array[2] = z;
+	return array;
       }
 
       T x, y, z;
