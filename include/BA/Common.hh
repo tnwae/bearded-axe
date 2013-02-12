@@ -15,7 +15,7 @@ const std::string WINDOW_TITLE = "render";
 typedef unsigned char uchar;
 typedef unsigned int  uint;
 typedef unsigned long ulong;
-typedef enum _RenderType { DLIST, IMMED } RenderType;
+typedef enum _RenderType { IMMED, PRIM_CUBE, PRIM_SPHERE, PRIM_PYRAMID, PRIM_TEAPOT } RenderType;
 
 #endif
 
