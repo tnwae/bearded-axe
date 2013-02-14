@@ -2,6 +2,7 @@
 #define _BA_VECTOR_3_HH
 #include <sstream>
 #include <cmath>
+#include <memory>
 
 namespace BA {
   template <typename T = float> class Vector3 {
@@ -23,9 +24,15 @@ namespace BA {
       }
 
       Vector3<T> (T *array) {
-	x = array[0];
-	y = array[1];
-	z = array[2]; 
+        x = array[0];
+        y = array[1];
+        z = array[2]; 
+      }
+
+      Vector3<T> (std::unique_ptr<T[]> array) {
+        x = array[0];
+        y = array[1];
+        z = array[2];
       }
 
       Vector3<T> &operator=(const Vector3<T> &rhs) {
@@ -130,12 +137,12 @@ namespace BA {
         return ss.str();
       }
 
-      T *toArray() {
-	T *array = new T[3];
-	array[0] = x; 
-	array[1] = y;
-	array[2] = z;
-	return array;
+      std::unique_ptr<T[]> toArray() {
+        std::unique_ptr<T[]> array(new T[3]);
+        array[0] = x; 
+        array[1] = y;
+        array[2] = z;
+        return array;
       }
 
       T x, y, z;
