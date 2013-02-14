@@ -5,6 +5,7 @@ using namespace BA;
 #include <cassert>
 #include <cmath>
 #include <cfloat>
+#include <memory>
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -18,8 +19,8 @@ int main(int argc, char **argv) {
    float vg = vq.norm();
    Vector3<float> vh = va - va;
    Vector3<float> vi = vb.normalize();
-   float *aa = va.toArray();
-   Vector3<float> vj(aa);
+   unique_ptr<float[]> aa = va.toArray();
+   Vector3<float> vj(aa.get());
 
 // KNOWN VALUES.
 // I found these either by hand or with the help of Wolfram Alpha.
@@ -77,6 +78,4 @@ int main(int argc, char **argv) {
    assert(vj.y == aa[1]);
    assert(vj.z == aa[2]);
    cout << "test 11 passed (vector created from array has correct values)" << endl;
-
-   delete aa;
 }
