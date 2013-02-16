@@ -60,7 +60,7 @@ namespace BA {
    }
 
    Vector3<float> *getFacetAt(int _subscript) {
-      return vertices->at(_subscript);
+      return facets->at(_subscript);
    }
 
    Vector3<float> *getSurfaceNormal(int _subscript) {
