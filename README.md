@@ -57,12 +57,12 @@ I'll add more here once I try building Bearded Axe on my MacBook.
 
 ## Prerequisites (Windows)
 
-Likely prereqs for Windows:
+Likely prereqs for Windows (these are the files I have downloaded to my Windows box):
 
-- Mesa sources
-- Freeglut sources
-- MinGW
-- Boost sources
+- Mesa3D 9.1.2
+- Freeglut 2.8.1
+- TDM-GCC 4.7.1-2 (or TDM-GCC64 4.7.1-3)
+- Boost 1.53
 
 One of the things I hope to do is build on Windows.  This will most
 likely require MinGW and building Mesa and Freeglut from source, so
