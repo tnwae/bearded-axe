@@ -1,6 +1,7 @@
 CXXFLAGS=-std=gnu++11 -DDEBUG -g -Wall -Wextra -pedantic -I../include -DGL_GLEXT_PROTOTYPES
 LXXFLAGS=-g -lm -lGL -lGLU -lglut
-OBJS=RenderObject.o GlutCallbacks.o BeardedAxe.o UniformOperations.o
+OBJS=RenderObject.o GlutCallbacks.o BeardedAxe.o UniformOperations.o \
+  TeapotObject.o Scene.o GlobalState.o
 
 all: $(OBJS)
 	@$(CXX) -I../include -o ba $(OBJS) $(LXXFLAGS) 
