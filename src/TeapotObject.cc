@@ -20,6 +20,6 @@ namespace BA {
     }
 
     void TeapotObject::render() {
-//       glutTeapot
+        glutSolidTeapot((GLdouble) size);
     }
 }
