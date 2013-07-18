@@ -15,23 +15,6 @@ namespace BA {
     RenderObject(std::string, std::string, RenderType);
     ~RenderObject();
 
-//    int getVertexCount();
-//    int getFacetCount();
-
-//    Vector3<float> getMinCoord();
-//    Vector3<float> getMaxCoord();
-//    float getBoundingSphereRadius();
-
-//    std::pair<uint, uint> *getTextureSize();
-//    GLuint getTextureObject();
-
-//    float *getAmbientLight();
-//    float *getDiffuseLight();
-//    float *getSpecularLight();
-//    float getShininess();
-
-//    GLuint getShaderObject();
-
     std::string toString();
 
     void render();

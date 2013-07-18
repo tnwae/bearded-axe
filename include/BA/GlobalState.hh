@@ -13,11 +13,11 @@ namespace BA {
    const int GS_SPECULAR = 7;
 
    class GlobalState : public BObject {
-public:
+     public:
+       GlobalState();
+     private:
 
-private:
-
-};
+   };
 }
 
 #endif
