@@ -5,51 +5,56 @@
 #include <vector>
 
 namespace BA {
-   RenderObject::RenderObject(std::string _name, std::string _filename, RenderType _renderType) {
-      name = _name;
-      renderType = _renderType;
+    RenderObject::RenderObject(std::string _name, std::string _filename, RenderType _renderType) {
+        name = _name;
+        renderType = _renderType;
 
-      vertices = new std::vector<Vector3<float> *>;
-      facets = new std::vector<Vector3<float> *>;
-      surfaceNormals = new std::vector<Vector3<float> *>;
-      vertexNormals = new std::vector<Vector3<float> *>;
+        vertices = new std::vector<Vector3<float> *>;
+        facets = new std::vector<Vector3<float> *>;
+        surfaceNormals = new std::vector<Vector3<float> *>;
+        vertexNormals = new std::vector<Vector3<float> *>;
 
-      loadGeometryFromFile(_filename);
-   }
+        loadGeometryFromFile(_filename);
+    }
 
-   RenderObject::~RenderObject() {
-      std::vector<Vector3<float>*>::iterator vit;
+    void RenderObject::render() {
+        return;
+    }
+    
 
-      for(vit = vertices->begin(); vit != vertices->end(); vit++) {
-        delete *vit;
-      }
+    RenderObject::~RenderObject() {
+        std::vector<Vector3<float>*>::iterator vit;
 
-      delete vertices;
+        for(vit = vertices->begin(); vit != vertices->end(); vit++) {
+            delete *vit;
+        }
 
-      for(vit = facets->begin(); vit != facets->end(); vit++) {
-	 delete *vit;
-      }
+        delete vertices;
 
-      delete facets;
+        for(vit = facets->begin(); vit != facets->end(); vit++) {
+            delete *vit;
+        }
 
-      for(vit = surfaceNormals->begin(); vit != surfaceNormals->end(); vit++) {
-	 delete *vit;
-      }
+        delete facets;
 
-      delete surfaceNormals;
+        for(vit = surfaceNormals->begin(); vit != surfaceNormals->end(); vit++) {
+            delete *vit;
+        }
 
-      for(vit = vertexNormals->begin(); vit != vertexNormals->end(); vit++) {
-	 delete *vit;
-      }
+        delete surfaceNormals;
 
-      delete vertexNormals;
-   }
+        for(vit = vertexNormals->begin(); vit != vertexNormals->end(); vit++) {
+            delete *vit;
+        }
 
-   std::string RenderObject::toString() {
-      return name;
-   }
+        delete vertexNormals;
+    }
 
-   int RenderObject::loadGeometryFromFile(std::string where) {
-      return -1;
-   }
+    std::string RenderObject::toString() {
+        return name;
+    }
+
+    int RenderObject::loadGeometryFromFile(std::string where) {
+        return -1;
+    }
 }

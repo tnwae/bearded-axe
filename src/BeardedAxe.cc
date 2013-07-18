@@ -1,8 +1,15 @@
 #include <BA.hh>
 #include <BA/Vector3.hh>
+#include <BA/GlobalState.hh>
+#include <BA/Scene.hh>
 #include <BA/GlutCallbacks.hh>
 #include <BA/RenderObject.hh>
+#include <BA/TeapotObject.hh>
 #include <iostream>
+
+namespace BA {
+  Scene *scene;
+}
 
 int main(int argc, char *argv[]) {
   float position[4] = { 0, 80, 0, 1. };
@@ -12,8 +19,8 @@ int main(int argc, char *argv[]) {
   float shininess[1] = { 76.8 };
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-  glutCreateWindow(WINDOW_TITLE.c_str());
-  glutReshapeWindow(WIDTH, HEIGHT);
+  glutCreateWindow(BA::WINDOW_TITLE.c_str());
+  glutReshapeWindow(BA::WIDTH, BA::HEIGHT);
 
   // a little OGL init work...
   glEnable(GL_DEPTH_TEST);
@@ -35,6 +42,11 @@ int main(int argc, char *argv[]) {
   gluLookAt(8., 8., 8.,
             0., 0., 0.,
             0., 1., 0.);
+
+  BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot1"), static_cast<std::string> (NULL), BA::PRIM_TEAPOT, 4);
+  BA::GlobalState *gs = new BA::GlobalState();
+  BA::scene = new BA::Scene(gs);
+  BA::scene->addObject(tpt);
 
   glutDisplayFunc(BA::glutCbkDisplay);
   glutReshapeFunc(BA::glutCbkReshape);
