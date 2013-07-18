@@ -15,15 +15,13 @@ namespace BA {
       vertexNormals = new std::vector<Vector3<float> *>;
 
       loadGeometryFromFile(_filename);
-
-      
    }
 
    RenderObject::~RenderObject() {
       std::vector<Vector3<float>*>::iterator vit;
 
       for(vit = vertices->begin(); vit != vertices->end(); vit++) {
-	 delete *vit;
+        delete *vit;
       }
 
       delete vertices;
