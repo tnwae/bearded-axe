@@ -3,12 +3,15 @@ LXXFLAGS=-g -lm -lGL -lGLU -lglut
 OBJS=RenderObject.o GlutCallbacks.o BeardedAxe.o UniformOperations.o
 
 all: $(OBJS)
-	$(CXX) -I../include -o ba $(OBJS) $(LXXFLAGS) 
+	@$(CXX) -I../include -o ba $(OBJS) $(LXXFLAGS) 
+	@echo "    [LD] ba"
 
 .SUFFIXES: .cc.o
 $*.o: $*.cc
-	$(CXX) $(CXXFLAGS) $*.cc
+	@$(CXX) $(CXXFLAGS) -c $*.cc
+	@echo "    [CC] $*.o"
 
 .PHONY: clean
 clean:
-	-rm -rf *.o ba
+	@-rm -rf *.o ba
+	@echo "    [CLEAN] ."
