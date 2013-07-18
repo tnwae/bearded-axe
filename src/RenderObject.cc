@@ -54,20 +54,4 @@ namespace BA {
    int RenderObject::loadGeometryFromFile(std::string where) {
       return -1;
    }
-
-   Vector3<float> *getVertexAt(int _subscript) {
-      return vertices->at(_subscript);
-   }
-
-   Vector3<float> *getFacetAt(int _subscript) {
-      return facets->at(_subscript);
-   }
-
-   Vector3<float> *getSurfaceNormal(int _subscript) {
-      return surfaceNormals->at(_subscript);
-   }
-
-   Vector3<float> *getVertexNormal(int _subscript) {
-      return vertexNormals->at(_subscript);
-   }
 }
