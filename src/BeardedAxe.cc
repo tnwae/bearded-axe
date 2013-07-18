@@ -43,7 +43,8 @@ int main(int argc, char *argv[]) {
             0., 0., 0.,
             0., 1., 0.);
 
-  BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot1"), static_cast<std::string> (NULL), BA::PRIM_TEAPOT, 4);
+  BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot1"),
+      std::string(""), BA::PRIM_TEAPOT, 4);
   BA::GlobalState *gs = new BA::GlobalState();
   BA::scene = new BA::Scene(gs);
   BA::scene->addObject(tpt);
@@ -59,6 +60,7 @@ int main(int argc, char *argv[]) {
 
   std::cout << __func__ << ": This is Bearded Axe (git-20130208)" << std::endl;
   std::cout << __func__ << ": Let's get started..." << std::endl;
+  std::cout << __func__ << ": [q] to quit" << std::endl;
 
   glutMainLoop();
 }
