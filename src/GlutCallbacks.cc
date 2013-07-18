@@ -1,16 +1,17 @@
 #include <BA.hh>
+#include <BA/Scene.hh>
 #include <BA/GlutCallbacks.hh>
 #include <cctype>
 
-// extern Scene *scene;
+namespace BA {
+  extern Scene *scene;
+}
 
 void BA::glutCbkDisplay(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glEnable(GL_BLEND);
 
-  // scene->render();
-  // XXX Stub render for now
-  glutSolidTeapot(4);
+  BA::scene->render();
   
   glFlush();
   glutSwapBuffers();
