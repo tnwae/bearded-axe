@@ -13,9 +13,10 @@ namespace BA {
   class RenderObject : public BObject {
   public:
     RenderObject(std::string, std::string, RenderType);
-    ~RenderObject();
+    virtual ~RenderObject();
 
     std::string toString();
+    RenderType getRenderType();
 
     void render();
   private:

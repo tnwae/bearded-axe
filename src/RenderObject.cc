@@ -21,6 +21,9 @@ namespace BA {
         return;
     }
     
+    RenderType RenderObject::getRenderType() {
+        return renderType;
+    }
 
     RenderObject::~RenderObject() {
         std::vector<Vector3<float>*>::iterator vit;
