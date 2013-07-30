@@ -1,6 +1,7 @@
 #include <BA/Scene.hh>
 #include <BA/GlobalState.hh>
 #include <BA/RenderObject.hh>
+#include <BA/TeapotObject.hh>
 #include <BA/Vector3.hh>
 #include <iostream>
 #include <utility>
@@ -20,7 +21,12 @@ namespace BA {
     void Scene::render() 
     {
         for(RenderObject *ro : objects) {
-            ro->render();
+            if(TeapotObject *tpt = dynamic_cast<TeapotObject *>(ro)) {
+                    tpt->render();
+            } else {
+                ro->render();
+            }
         }
     }    
 }
+
