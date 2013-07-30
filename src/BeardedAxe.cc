@@ -43,8 +43,7 @@ int main(int argc, char *argv[]) {
             0., 0., 0.,
             0., 1., 0.);
 
-  BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot1"),
-      std::string(""), BA::PRIM_TEAPOT, 4);
+  BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot1"), std::string(""), BA::PRIM_TEAPOT, 4);
   BA::GlobalState *gs = new BA::GlobalState();
   BA::scene = new BA::Scene(gs);
   BA::scene->addObject(tpt);
