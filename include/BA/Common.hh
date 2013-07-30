@@ -16,7 +16,7 @@ namespace BA {
   typedef unsigned char uchar;
   typedef unsigned int  uint;
   typedef unsigned long ulong;
-  typedef enum _RenderType { IMMED, PRIM_CUBE, PRIM_SPHERE, PRIM_PYRAMID, PRIM_TEAPOT } RenderType;
+  typedef enum _RenderType { PRIM_CUBE, PRIM_SPHERE, PRIM_PYRAMID, PRIM_TEAPOT } RenderType;
 }
 
 #endif
