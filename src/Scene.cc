@@ -3,6 +3,7 @@
 #include <BA/RenderObject.hh>
 #include <BA/TeapotObject.hh>
 #include <BA/SphereObject.hh>
+#include <BA/CubeObject.hh>
 #include <BA/Vector3.hh>
 #include <iostream>
 #include <utility>
