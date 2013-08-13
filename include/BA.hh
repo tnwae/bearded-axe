@@ -10,6 +10,7 @@ using namespace std;
 #endif
 
 /* Procedural functions we'll need to talk to the standard bits */
-void error(string *, ...);
+void error(string, ...);
+void message(string, ...);
 
 #endif /* defined _BA_HH */
