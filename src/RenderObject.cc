@@ -20,7 +20,11 @@ namespace BA {
     void RenderObject::render() {
         return;
     }
-    
+
+    void RenderObject::setCenterPosition(Vector3<float> *where) {
+    	centerCoord = where;
+    }
+
     RenderType RenderObject::getRenderType() {
         return renderType;
     }
@@ -51,6 +55,7 @@ namespace BA {
         }
 
         delete vertexNormals;
+        delete centerCoord;
     }
 
     std::string RenderObject::toString() {
