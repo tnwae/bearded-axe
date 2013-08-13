@@ -44,6 +44,7 @@ int main(int argc, char *argv[]) {
             0., 1., 0.);
 
   BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot1"), std::string(""), BA::PRIM_TEAPOT, 4);
+  tpt->setCenterPosition(new BA::Vector3<float>(2, 2, 0));
   BA::GlobalState *gs = new BA::GlobalState();
   BA::scene = new BA::Scene(gs);
   BA::scene->addObject(tpt);
@@ -51,8 +52,7 @@ int main(int argc, char *argv[]) {
   glutDisplayFunc(BA::glutCbkDisplay);
   glutReshapeFunc(BA::glutCbkReshape);
   glutKeyboardFunc(BA::glutCbkKeyboard);
-  //glutSpecialFunc(BA::glutCbkSpecialKeys);
-  glutSpecialFunc(NULL);
+  glutSpecialFunc(BA::glutCbkSpecialKeys);
   //glutMouseFunc(BA::glutCbkMouse);
   glutMouseFunc(NULL);
   glutIdleFunc(BA::glutCbkIdle);
