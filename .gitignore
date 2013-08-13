@@ -18,3 +18,8 @@
 ba
 v3test
 a.out
+
+# IDE crap (Eclipse)
+.project
+.cproject
+.settings
