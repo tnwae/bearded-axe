@@ -15,6 +15,7 @@ namespace BA {
     RenderObject(std::string, std::string, RenderType);
     virtual ~RenderObject();
 
+    void setCenterPosition(Vector3<float> *where);
     std::string toString();
     RenderType getRenderType();
 
@@ -27,6 +28,7 @@ namespace BA {
     vector<Vector3<float> *> *facets;
     vector<Vector3<float> *> *surfaceNormals;
     vector<Vector3<float> *> *vertexNormals;
+    Vector3<float> *centerCoord;
 
     // BOUNDING BOX
     Vector3<float> minCoord;
