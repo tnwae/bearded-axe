@@ -14,7 +14,7 @@ namespace BA {
 int main(int argc, char *argv[]) {
   float position[4] = { 0, 80, 0, 1. };
   float specular[4] = { 0.774597, 0.774597, 0.774597, 1. };
-  float diffuse[4] = { 0.4, 0.4, 0.4, 1. };
+  float diffuse[4] = { 0.7, 0.7, 0.65, 1. };
   float ambient[4] = { 0.25, 0.25, 0.25, 1. };
   float shininess[1] = { 76.8 };
   glutInit(&argc, argv);
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 
   std::cout << __func__ << ": This is Bearded Axe (git-20130208)" << std::endl;
   std::cout << __func__ << ": Let's get started..." << std::endl;
-  std::cout << __func__ << ": [q] to quit" << std::endl;
+  std::cout << __func__ << ": [f12] to quit" << std::endl;
 
   glutMainLoop();
 }
