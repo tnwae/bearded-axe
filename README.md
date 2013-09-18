@@ -1,5 +1,7 @@
 # About Bearded Axe
 
+[![endorse](https://api.coderwall.com/tnwae/endorsecount.png)](https://coderwall.com/tnwae)
+
 Bearded Axe is a simple generic OpenGL renderer written in clean, pure
 C++.  I aim to use as few plain-C features as possible.
 
