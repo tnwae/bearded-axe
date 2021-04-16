@@ -19,7 +19,7 @@ namespace BA {
     std::string toString();
     RenderType getRenderType();
 
-    void render();
+    virtual void render();
   private:
     std::string name;
 
@@ -55,7 +55,7 @@ namespace BA {
     // BOUND SHADER
     GLuint shaderObject;
 
-    int loadGeometryFromFile(std::string);
+    virtual bool loadGeometryFromFile(std::string) { return false; }
     Vector3<float> *getVertexAt(int);
     Vector3<float> *getFacetAt(int);
     Vector3<float> *getSurfaceNormalAt(int);
