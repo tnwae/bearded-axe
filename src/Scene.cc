@@ -23,15 +23,7 @@ namespace BA {
   void Scene::render()
   {
     for(RenderObject *ro : objects) {
-      if(TeapotObject *tpt = dynamic_cast<TeapotObject *>(ro)) {
-        tpt->render();
-      } else if(SphereObject *s = dynamic_cast<SphereObject *>(ro)) {
-        s->render();
-      } else if(CubeObject *s = dynamic_cast<CubeObject *>(ro)) {
-        s->render();
-      } else {
-        ro->render();
-      }
+      ro->render();
     }
   }
 }
