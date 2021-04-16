@@ -34,7 +34,7 @@ static void RotationCallback(GLfloat angle, GLfloat x, GLfloat y,
 
 static void ZoomCallback(GLfloat x, GLfloat y, GLfloat z) {
   BA::DebugMessage("%s: zooming %s by {%f, %f, %f}\n", __func__,
-      (x < 1 ? "in" : "out"), x, y, z);
+      (x < 1 ? "out" : "in"), x, y, z);
   glScalef(x, y, z);
 }
 
