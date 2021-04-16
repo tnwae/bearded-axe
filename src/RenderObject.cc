@@ -22,7 +22,7 @@ namespace BA {
     }
 
     void RenderObject::setCenterPosition(Vector3<float> *where) {
-    	centerCoord = where;
+        centerCoord = where;
     }
 
     RenderType RenderObject::getRenderType() {
@@ -60,9 +60,5 @@ namespace BA {
 
     std::string RenderObject::toString() {
         return name;
-    }
-
-    int RenderObject::loadGeometryFromFile(std::string where) {
-        return -1;
     }
 }
