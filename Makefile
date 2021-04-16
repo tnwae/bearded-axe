@@ -14,3 +14,4 @@ clean:
 .PHONY: realclean
 realclean: clean
 	$(MAKE) --directory=test clean
+
