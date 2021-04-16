@@ -9,7 +9,6 @@ namespace BA {
                                RenderType _renderType) :
     RenderObject(_name, _filename, _renderType) {
         size = (GLint) 4;
-
     }
 
 
@@ -23,3 +22,4 @@ namespace BA {
         glutSolidCube((GLdouble) size);
     }
 }
+
