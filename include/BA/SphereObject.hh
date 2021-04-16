@@ -15,7 +15,8 @@ namespace BA {
     public:
         SphereObject(std::string, std::string, RenderType);
         SphereObject(std::string, std::string, RenderType, int);
-        void render();
+    protected:
+        void renderOpCallback();
     private:
         GLint size;
     };

@@ -18,7 +18,8 @@ namespace BA {
         size = (GLint) _size;
     }
 
-    void SphereObject::render() {
+    void SphereObject::renderOpCallback() {
         glutSolidSphere((GLdouble) size, 16, 16);
     }
 }
+

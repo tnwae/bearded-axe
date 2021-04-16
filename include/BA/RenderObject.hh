@@ -19,8 +19,23 @@ namespace BA {
     std::string toString();
     RenderType getRenderType();
 
-    virtual void render();
+    void setAmbientVals(vector <float> *ambient);
+    void setDiffuseVals(vector <float> *diffuse);
+    void setSpecularVals(vector <float> *specular);
+    void setShininess(float shininess);
+
+    void render();
+
+  protected:
+    virtual void renderOpCallback();
+
   private:
+    void preRenderCallback();
+    void renderInitCallback();
+    void postRenderCallback();
+
+    bool renderTargetReached = false;
+
     std::string name;
 
     // GEOMETRY
@@ -41,9 +56,10 @@ namespace BA {
     GLuint textureObject;
 
     // LIGHT INFORMATION
-    float ambientLight[4];
-    float diffuseLight[4];
-    float specularLight[4];
+    GLenum lightSource;
+    float *ambientLight;
+    float *diffuseLight;
+    float *specularLight;
     float shininess;
 
     // RENDER TYPE

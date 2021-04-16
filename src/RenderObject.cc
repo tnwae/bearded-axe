@@ -17,8 +17,61 @@ namespace BA {
         loadGeometryFromFile(_filename);
     }
 
+    /**
+     * Render the object.  This callback is called once each frame.
+     */
     void RenderObject::render() {
-        return;
+      if(!renderTargetReached) {
+        DebugMessage("%s: render target reached for %s\n", __func__,
+            this->toString().c_str());
+        renderTargetReached = true;
+      }
+      RenderObject::preRenderCallback();
+      RenderObject::renderInitCallback();
+      RenderObject::renderOpCallback();
+      RenderObject::postRenderCallback();
+    }
+
+    void RenderObject::preRenderCallback() {
+      glPushMatrix();
+    }
+
+    void RenderObject::renderInitCallback() {
+      glPolygonMode(GL_FRONT, GL_FILL);
+      glLightfv(this->lightSource, GL_POSITION,
+          this->centerCoord->toArray().get());
+      glLightfv(this->lightSource, GL_DIFFUSE, this->diffuseLight);
+      glLightfv(this->lightSource, GL_SPECULAR, this->specularLight);
+      glLightfv(this->lightSource, GL_AMBIENT, this->ambientLight);
+      glMaterialfv(GL_FRONT, GL_SHININESS, &(this->shininess));
+      glTranslatef(this->centerCoord->x, this->centerCoord->y,
+          this->centerCoord->z);
+
+      return;
+    }
+
+    void RenderObject::renderOpCallback() {
+      return;
+    }
+
+    void RenderObject::postRenderCallback() {
+      glPopMatrix();
+    }
+
+    void RenderObject::setAmbientVals(std::vector<float> *ambient) {
+      ambientLight = ambient->data();
+    }
+
+    void RenderObject::setDiffuseVals(std::vector<float> *diffuse) {
+      diffuseLight = diffuse->data();
+    }
+
+    void RenderObject::setSpecularVals(std::vector<float> *specular) {
+      specularLight = specular->data();
+    }
+
+    void RenderObject::setShininess(float shininess) {
+      this->shininess = shininess;
     }
 
     void RenderObject::setCenterPosition(Vector3<float> *where) {
