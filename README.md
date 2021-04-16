@@ -22,21 +22,31 @@ Bearded Axe is only tested on the Linux family of operating systems.
 
 ## Prerequisites (Linux/BSD/other Unixen)
 
-You need, at the very minimum, the proper development libraries.  These include the development versions of `libGL`, `libGLU`, and `freeglut`.  There may be subtle differences between Linux and other Unixen, and I neither know nor care about the specifics.  For me, it's not a real computer unless it runs Debian Linux, and that is where I do the bulk of my testing.
+You need, at the very minimum, the proper development libraries.  These
+include the development versions of `libGL`, `libGLU`, and `freeglut`.
+There may be subtle differences between Linux and other Unixen, and I
+neither know nor care about the specifics.  For me, it's not a real
+computer unless it runs Debian Linux, and that is where I do the bulk of
+my testing.
 
-I use GNU Make though other `make`s should work, and the use of GNU C++ is universal.
+I use GNU Make though other `make`s should work, and the use of GNU C++
+is universal.
 
 ## Prerequisites (macOS)
 
-Sell your Mac and buy a real computer, install Linux or BSD on that real computer, then see above.
+Sell your Mac and buy a real computer, install Linux or BSD on that real
+computer, then see above.
 
 ## Prerequisites (Windows)
 
-Delete Windows off your computer and install Linux or BSD, then see above.
+Delete Windows off your computer and install Linux or BSD, then see
+above.
 
 # External libraries included with Bearded Axe
 
-To read Stanford PLY files, Bearded Axe uses the RPly library by Diego Nehab from <http://w3.impa.br/~diego/software/ply>.
+To read Stanford PLY files, Bearded Axe uses the RPly library by Diego
+Nehab from <http://w3.impa.br/~diego/software/ply>.
 
-For other tasks, I have adapted examples from the OpenGL Programming Examples site at <http://openglsamples.sf.net>.
+For other tasks, I have adapted examples from the OpenGL Programming
+Examples site at <http://openglsamples.sf.net>.
 
