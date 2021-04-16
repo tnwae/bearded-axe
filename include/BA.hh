@@ -13,4 +13,15 @@ using namespace std;
 void error(string, ...);
 void message(string, ...);
 
+namespace BA {
+  const int DEBUG_LOG = 2;
+  const int INFO_LOG  = 1;
+  const int NOLOG_MSG = 0;
+  const int SILENT_LOG = -1;
+
+  void ConsoleMessage(std::string fmt, ...);
+  void LogMessage(std::string fmt, ...);
+  void DebugMessage(std::string fmt, ...);
+}
+
 #endif /* defined _BA_HH */
