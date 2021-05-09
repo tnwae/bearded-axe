@@ -25,9 +25,7 @@ namespace BA {
     void setShininess(float shininess);
 
     void render();
-
-  protected:
-    virtual void renderOpCallback();
+    virtual void renderOpCallback() = 0;
 
   private:
     void preRenderCallback();
