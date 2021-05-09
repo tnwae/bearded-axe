@@ -7,49 +7,83 @@
 #include <BA/TeapotObject.hh>
 #include <BA/CubeObject.hh>
 #include <iostream>
+#include <unistd.h>
+#include <stdlib.h>
 
 namespace BA {
   Scene *scene;
+  int LogLevel = NOLOG_MSG;
 }
 
 int main(int argc, char *argv[]) {
-  float position[4] = { 0, 80, 0, 1. };
-  float specular[4] = { 0.774597, 0.774597, 0.774597, 1. };
-  float diffuse[4] = { 0.7, 0.7, 0.65, 1. };
-  float ambient[4] = { 0.25, 0.25, 0.25, 1. };
-  float shininess[1] = { 76.8 };
+
+  /*
+    GLUT initialization preamble.
+   */
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
   glutCreateWindow(BA::WINDOW_TITLE.c_str());
   glutReshapeWindow(BA::WIDTH, BA::HEIGHT);
 
-  // a little OGL init work...
+  int opt;
+
+  while((opt = getopt(argc, argv, "ldq")) != -1) {
+    switch(opt) {
+      case 'l':
+        BA::LogLevel = BA::INFO_LOG;
+        break;
+      case 'd':
+        BA::LogLevel = BA::DEBUG_LOG;
+        break;
+      case 'q':
+        BA::LogLevel = BA::SILENT_LOG;
+        break;
+      default:
+        std::cerr << "usage: " << argv[0] << " [-(l|d|q)]" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+  }
+
+  /*
+    Initialize the working state for OpenGL
+
+    TODO: Adjust to use shaders rather than fixed pipeline
+   */
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
   glEnable(GL_NORMALIZE);
-  glClearColor(0., 0., 0., 1.0);
+  glClearColor(0., 0., 0., 1.0);  // black background
   glClearDepth(1.0);
   glShadeModel(GL_SMOOTH);
-  glPolygonMode(GL_FRONT, GL_FILL);
-  glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
-  glLightfv(GL_LIGHT0, GL_POSITION, position);
-  glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
-  glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
-  glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   gluLookAt(8., 8., 8.,
             0., 0., 0.,
             0., 1., 0.);
 
-  BA::CubeObject *tpt = new BA::CubeObject(std::string("cube1"),
-      std::string(""), BA::PRIM_CUBE, 4);
-  tpt->setCenterPosition(new BA::Vector3<float>(2, 2, 0));
   BA::GlobalState *gs = new BA::GlobalState();
   BA::scene = new BA::Scene(gs);
+
+  BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot0"),
+      std::string(""), BA::PRIM_TEAPOT, 4);
+  tpt->setCenterPosition(new BA::Vector3<float>(0, 0, 0));
+  tpt->setSpecularVals(new vector<float>({ 1., 1., 1., 1. }));
+  tpt->setDiffuseVals(new vector<float>({ 1., 0., 0., 1. }));
+  tpt->setAmbientVals(new vector<float>({ 1., 0., 0., 1. }));
+  tpt->setShininess(95.0);
   BA::scene->addObject(tpt);
+
+  /*
+  BA::CubeObject *cube = new BA::CubeObject(std::string("cube0"),
+      std::string(""), BA::PRIM_CUBE, 4);
+  cube->setCenterPosition(new BA::Vector3<float>(-14, 0, 14));
+  cube->setSpecularVals(new vector<float>({ 0.75, 0.75, 0.75, 1. }));
+  cube->setDiffuseVals(new vector<float>({ 0.7, 0.7, 0.65, 1. }));
+  cube->setAmbientVals(new vector<float>({ 0.5, 0.5, 0.5, 1. }));
+  cube->setShininess(76.8);
+  BA::scene->addObject(cube);
+  */
 
   glutDisplayFunc(BA::glutCbkDisplay);
   glutReshapeFunc(BA::glutCbkReshape);
@@ -59,10 +93,13 @@ int main(int argc, char *argv[]) {
   glutMouseFunc(NULL);
   glutIdleFunc(BA::glutCbkIdle);
 
-  std::cout << __func__ << ": This is Bearded Axe (git-20130208)" << std::endl;
-  std::cout << __func__ << ": Let's get started..." << std::endl;
-  std::cout << __func__ << ": [f12] to quit" << std::endl;
+  BA::ConsoleMessage("%s: This is Bearded Axe (git-20210416)\n",
+      __func__);
+  BA::ConsoleMessage("%s: Let's get started...\n", __func__);
+  BA::ConsoleMessage("%s: [f12] to quit\n", __func__);
 
   glutMainLoop();
+
+  exit(EXIT_SUCCESS);
 }
 

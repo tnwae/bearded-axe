@@ -8,14 +8,51 @@ namespace BA {
 }
 
 static bool wireframe_p = false;
-static const float zoom_constant = 0.5;
-static const float xlate_constant = 0.5;
-static const float rotate_constant = 2.5;
+static const float zoom_constant = 1.250000;
+static const float xlate_constant = 0.500000;
+static const float rotate_constant = 1.800000;
 static bool fullscreen_p = false;
+static const float fov = 75.;
 static int oldheight = -1;
 static int oldwidth = -1;
 static int oldx = -1;
 static int oldy = -1;
+
+static void RotationCallback(GLfloat angle, GLfloat x, GLfloat y,
+    GLfloat z) {
+  char axis;
+
+  axis = ((x == 1. && y == 0. && z == 0.) ? 'x' :
+          (x == 0. && y == 1. && z == 0.) ? 'y' :
+          (x == 0. && y == 0. && z == 1.) ? 'z' : '\0');
+
+  BA::DebugMessage("%s: rotating view by %f degrees in %c-axis\n",
+      __func__, angle, axis);
+
+  glRotatef(angle, x, y, z);
+}
+
+static string getKeyname(BA::uchar key) {
+  switch((unsigned char) key) {
+    case 0x1b:  // Escape
+      return string("Esc");
+    case 0x08:  // Backspace
+      return string("Bksp");
+    case 0x7f:  // Delete
+      return string("Del");
+    case 0x0a:  // Line Feed
+    case 0x0d:  // Carriage Return
+      return string("Return");
+  }
+
+  return string((char *) &key);
+}
+
+static void ZoomCallback(GLfloat x, GLfloat y, GLfloat z) {
+  BA::DebugMessage("%s: zooming %s by {%f, %f, %f}\n", __func__,
+      (x < 1 ? "out" : "in"), x, y, z);
+  glScalef(x, y, z);
+}
 
 void BA::glutCbkDisplay(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -31,37 +68,50 @@ void BA::glutCbkDisplay(void) {
 void BA::glutCbkKeyboard(uchar key, int x __attribute__((unused)), int y __attribute__((unused))) {
   switch(tolower(key))
   {
-    case 'a': glRotatef( rotate_constant, 0, 1, 0); break;
-    case 'd': glRotatef(-rotate_constant, 0, 1, 0); break;
-    case 'w': glRotatef(-rotate_constant, 0, 0, 1); break;
-    case 's': glRotatef( rotate_constant, 0, 0, 1); break;
-    case 'e': glRotatef( rotate_constant, 1, 0, 0); break;
-    case 'q': glRotatef(-rotate_constant, 1, 0, 0); break;
+    case 'a': RotationCallback(rotate_constant, 0, 1, 0); break;
+    case 'd': RotationCallback(-rotate_constant, 0, 1, 0); break;
+    case 'w': RotationCallback(-rotate_constant, 0, 0, 1); break;
+    case 's': RotationCallback( rotate_constant, 0, 0, 1); break;
+    case 'e': RotationCallback( rotate_constant, 1, 0, 0); break;
+    case 'q': RotationCallback(-rotate_constant, 1, 0, 0); break;
     case 'z':
-      glScalef(1. + zoom_constant, 1. + zoom_constant, 1. + zoom_constant);
+      ZoomCallback(1. * zoom_constant, 1. * zoom_constant, 1. *
+          zoom_constant); break;
       break;
     case 'x':
-      glScalef(1. - zoom_constant, 1. - zoom_constant, 1. - zoom_constant);
+      ZoomCallback(1. / zoom_constant, 1. / zoom_constant, 1. /
+          zoom_constant); break;
       break;
     case 'f':
+      BA::DebugMessage("%s: wireframe mode ", __func__);
       if(wireframe_p) {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // filled rendering
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         wireframe_p = false;
+        BA::DebugMessage("off\n");
       } else {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // wireframe rendering
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         wireframe_p = true;
+        BA::DebugMessage("on\n");
       }
-      message(string("%s: switching to %s mode\n"), __func__, (wireframe_p) ? "wireframe" : "solid");
       break;
     default:
+      BA::DebugMessage("%s: key %s caught\n", __func__,
+          (getKeyname(key)).c_str());
       break;
   }
 }
 
 void BA::glutCbkSpecialKeys(int key, int x __attribute__((unused)), int y __attribute__((unused))) {
-	glMatrixMode(GL_MODELVIEW);
+  int height = glutGet(GLUT_WINDOW_HEIGHT);
+  int width = glutGet(GLUT_WINDOW_WIDTH);
+  glMatrixMode(GL_MODELVIEW);
 	switch(key)
   {
+    case GLUT_KEY_F2:
+      BA::DebugMessage("%s: writing %dx%d screenshot to ./dump.png\n",
+          __func__, width, height);
+      BA::renderToFile("./dump.png", width, height);
+      break;
 	  case GLUT_KEY_F11:
 	    if(!fullscreen_p) {
 	      oldheight = glutGet(GLUT_WINDOW_HEIGHT);
@@ -70,13 +120,16 @@ void BA::glutCbkSpecialKeys(int key, int x __attribute__((unused)), int y __attr
 	      oldy = glutGet(GLUT_WINDOW_Y);
 	      glutFullScreen();
 	      fullscreen_p = true;
+        BA::DebugMessage("%s: going fullscreen\n", __func__);
 	    } else {
 	      glutPositionWindow(oldx, oldx);
 	      glutReshapeWindow(oldwidth, oldheight);
 	      fullscreen_p = false;
+        BA::DebugMessage("%s: leaving fullscreen\n", __func__);
 	    }
 	    break;
 	  case GLUT_KEY_F12:
+      BA::DebugMessage("%s: leaving Bearded Axe\n", __func__);
 	    exit(0); break;
 	  default: break;
 	}
@@ -94,7 +147,7 @@ void BA::glutCbkReshape(int newX, int newY) {
   glViewport(0, 0, newX, newY);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(75, (GLfloat) ((float) newX / (float) newY), 1.0, 100.0);
+  gluPerspective(fov, (GLfloat) ((float) newX / (float) newY), 1.0, 100.0);
   glMatrixMode(GL_MODELVIEW);
   glutPostRedisplay();
 }

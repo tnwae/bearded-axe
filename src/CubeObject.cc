@@ -18,7 +18,7 @@ namespace BA {
         size = (GLint) _size;
     }
 
-    void CubeObject::render() {
+    void CubeObject::renderOpCallback() {
         glutSolidCube((GLdouble) size);
     }
 }

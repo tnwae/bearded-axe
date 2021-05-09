@@ -15,9 +15,16 @@ namespace BA {
     globalStates.push_back(gs);
   }
 
+  Scene::~Scene() {
+    for(RenderObject *ro : objects) {
+      delete ro;
+    }
+  }
+
   void Scene::addObject(RenderObject *ro)
   {
     objects.push_back(ro);
+    DebugMessage("Added object %s to scene\n", ro->toString().c_str());
   }
 
   void Scene::render()

@@ -23,3 +23,7 @@ a.out
 .project
 .cproject
 .settings
+
+# Profiling crap
+*.gcno
+*.info

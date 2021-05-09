@@ -15,7 +15,8 @@ namespace BA {
     public:
         CubeObject(std::string, std::string, RenderType);
         CubeObject(std::string, std::string, RenderType, int);
-        void render();
+    protected:
+        void renderOpCallback();
     private:
         GLint size;
     };

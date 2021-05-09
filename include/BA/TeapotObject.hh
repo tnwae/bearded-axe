@@ -15,7 +15,7 @@ namespace BA {
     public:
         TeapotObject(std::string, std::string, RenderType);
         TeapotObject(std::string, std::string, RenderType, int);
-        void render();
+        void renderOpCallback();
     private:
         GLint size;
     };
