@@ -32,6 +32,22 @@ static void RotationCallback(GLfloat angle, GLfloat x, GLfloat y,
   glRotatef(angle, x, y, z);
 }
 
+static string getKeyname(BA::uchar key) {
+  switch((unsigned char) key) {
+    case 0x1b:  // Escape
+      return string("Esc");
+    case 0x08:  // Backspace
+      return string("Bksp");
+    case 0x7f:  // Delete
+      return string("Del");
+    case 0x0a:  // Line Feed
+    case 0x0d:  // Carriage Return
+      return string("Return");
+  }
+
+  return string((char *) &key);
+}
+
 static void ZoomCallback(GLfloat x, GLfloat y, GLfloat z) {
   BA::DebugMessage("%s: zooming %s by {%f, %f, %f}\n", __func__,
       (x < 1 ? "out" : "in"), x, y, z);
@@ -79,14 +95,23 @@ void BA::glutCbkKeyboard(uchar key, int x __attribute__((unused)), int y __attri
       }
       break;
     default:
+      BA::DebugMessage("%s: key %s caught\n", __func__,
+          (getKeyname(key)).c_str());
       break;
   }
 }
 
 void BA::glutCbkSpecialKeys(int key, int x __attribute__((unused)), int y __attribute__((unused))) {
-	glMatrixMode(GL_MODELVIEW);
+  int height = glutGet(GLUT_WINDOW_HEIGHT);
+  int width = glutGet(GLUT_WINDOW_WIDTH);
+  glMatrixMode(GL_MODELVIEW);
 	switch(key)
   {
+    case GLUT_KEY_F2:
+      BA::DebugMessage("%s: writing %dx%d screenshot to ./dump.png\n",
+          __func__, width, height);
+      BA::renderToFile("./dump.png", width, height);
+      break;
 	  case GLUT_KEY_F11:
 	    if(!fullscreen_p) {
 	      oldheight = glutGet(GLUT_WINDOW_HEIGHT);

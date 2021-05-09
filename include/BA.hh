@@ -22,6 +22,7 @@ namespace BA {
   void ConsoleMessage(std::string fmt, ...);
   void LogMessage(std::string fmt, ...);
   void DebugMessage(std::string fmt, ...);
+  void renderToFile(std::string filename, uint x, uint y);
 }
 
 #endif /* defined _BA_HH */
