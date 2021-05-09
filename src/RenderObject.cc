@@ -28,7 +28,7 @@ namespace BA {
       }
       RenderObject::preRenderCallback();
       RenderObject::renderInitCallback();
-      RenderObject::renderOpCallback();
+      renderOpCallback();
       RenderObject::postRenderCallback();
     }
 
@@ -50,9 +50,7 @@ namespace BA {
       return;
     }
 
-    void RenderObject::renderOpCallback() {
-      return;
-    }
+    void RenderObject::renderOpCallback() { }
 
     void RenderObject::postRenderCallback() {
       glPopMatrix();
@@ -109,6 +107,9 @@ namespace BA {
 
         delete vertexNormals;
         delete centerCoord;
+        delete ambientLight;
+        delete diffuseLight;
+        delete specularLight;
     }
 
     std::string RenderObject::toString() {
