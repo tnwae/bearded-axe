@@ -18,6 +18,7 @@ namespace BA {
    }
 
     void TeapotObject::renderOpCallback() {
+        RenderObject::renderOpCallback();
         glutSolidTeapot((GLdouble) size);
     }
 }
