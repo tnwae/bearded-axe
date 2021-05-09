@@ -16,6 +16,15 @@ namespace BA {
 }
 
 int main(int argc, char *argv[]) {
+
+  /*
+    GLUT initialization preamble.
+   */
+  glutInit(&argc, argv);
+  glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+  glutCreateWindow(BA::WINDOW_TITLE.c_str());
+  glutReshapeWindow(BA::WIDTH, BA::HEIGHT);
+
   int opt;
 
   while((opt = getopt(argc, argv, "ldq")) != -1) {
@@ -34,14 +43,6 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
   }
-
-  /*
-    GLUT initialization preamble.
-   */
-  glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-  glutCreateWindow(BA::WINDOW_TITLE.c_str());
-  glutReshapeWindow(BA::WIDTH, BA::HEIGHT);
 
   /*
     Initialize the working state for OpenGL
@@ -66,21 +67,23 @@ int main(int argc, char *argv[]) {
 
   BA::TeapotObject *tpt = new BA::TeapotObject(std::string("teapot0"),
       std::string(""), BA::PRIM_TEAPOT, 4);
-  tpt->setCenterPosition(new BA::Vector3<float>(14, 14, 0));
-  tpt->setSpecularVals(new vector<float>({ 0.75, 0.75, 0.75, 1. }));
-  tpt->setDiffuseVals(new vector<float>({ 0.7, 0.7, 0.65, 1. }));
-  tpt->setAmbientVals(new vector<float>({ 0.5, 0.5, 0.5, 1. }));
-  tpt->setShininess(76.8);
+  tpt->setCenterPosition(new BA::Vector3<float>(0, 0, 0));
+  tpt->setSpecularVals(new vector<float>({ 1., 1., 1., 1. }));
+  tpt->setDiffuseVals(new vector<float>({ 1., 0., 0., 1. }));
+  tpt->setAmbientVals(new vector<float>({ 1., 0., 0., 1. }));
+  tpt->setShininess(95.0);
   BA::scene->addObject(tpt);
 
+  /*
   BA::CubeObject *cube = new BA::CubeObject(std::string("cube0"),
       std::string(""), BA::PRIM_CUBE, 4);
-  cube->setCenterPosition(new BA::Vector3<float>(-14, -14, 0));
+  cube->setCenterPosition(new BA::Vector3<float>(-14, 0, 14));
   cube->setSpecularVals(new vector<float>({ 0.75, 0.75, 0.75, 1. }));
   cube->setDiffuseVals(new vector<float>({ 0.7, 0.7, 0.65, 1. }));
   cube->setAmbientVals(new vector<float>({ 0.5, 0.5, 0.5, 1. }));
   cube->setShininess(76.8);
   BA::scene->addObject(cube);
+  */
 
   glutDisplayFunc(BA::glutCbkDisplay);
   glutReshapeFunc(BA::glutCbkReshape);
