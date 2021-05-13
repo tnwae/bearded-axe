@@ -26,4 +26,5 @@ a.out
 
 # Profiling crap
 *.gcno
+*.gcda
 *.info
