@@ -1,4 +1,3 @@
-
 #ifndef _BA_GLOBALSTATE_HH
 #define _BA_GLOBALSTATE_HH
 #include <vector>
@@ -15,8 +14,42 @@ namespace BA {
    class GlobalState : public BObject {
      public:
        GlobalState();
-     private:
+       ~GlobalState();
 
+       bool hasAmbient();
+       void setAmbient(bool);
+       bool hasDiffuse();
+       void setDiffuse(bool);
+       bool hasSpecular();
+       void setSpecular(bool);
+
+       uint getShader();
+       void setShader(uint);
+       uint getTexture();
+       void setTexture(uint);
+       uint getFbo();
+       void setFbo(uint);
+
+       Vector3<float> *getCamera();
+       Vector3<float> *getLight();
+       void setCamera(float, float, float);
+       void setLight(float, float, float);
+
+       void setName(string);
+
+       int getStateType();
+       void setStateType(int);
+     private:
+       Vector3<float> *camera;
+       Vector3<float> *light;
+       bool ambient;
+       bool diffuse;
+       bool specular;
+       uint shader;
+       uint texture;
+       uint fbo;
+       string name;
+       int stateType;
    };
 }
 
