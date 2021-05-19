@@ -10,9 +10,20 @@
 #include <vector>
 
 namespace BA {
-  Scene::Scene(GlobalState *gs)
+  Scene::Scene()
   {
-    globalStates.push_back(gs);
+    GlobalState *tex = new GlobalState();
+
+    tex->setAmbient(true);
+    tex->setDiffuse(true);
+    tex->setSpecular(true);
+    tex->setName("state0");
+    tex->setTexture((uint) 0);
+    tex->setStateType(BA::GS_TEXTURE);
+    tex->setLight(8, 8, 0);
+    tex->setCamera(8, 8, 8);
+
+    globalStates.push_back(tex);
   }
 
   Scene::~Scene() {
@@ -27,10 +38,19 @@ namespace BA {
     DebugMessage("Added object %s to scene\n", ro->toString().c_str());
   }
 
+  /**
+   * Render the scene.
+   */
   void Scene::render()
   {
-    for(RenderObject *ro : objects) {
-      ro->render();
+    for(GlobalState *gs : globalStates) {
+      Vector3<float> *light = gs->getLight();
+      GLfloat pos[] = {light->x, light->y, light->z, 0};
+      glLightfv(GL_LIGHT0, GL_POSITION, pos);
+      for(RenderObject *ro : objects) {
+        ro->setRenderContext(gs);
+        ro->render();
+      }
     }
   }
 }

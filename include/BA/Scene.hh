@@ -11,13 +11,11 @@ using namespace std;
 namespace BA {
   class Scene : public BObject {
   public:
-     Scene(GlobalState *);
+     Scene();
      ~Scene();
      void addObject(RenderObject *);
      void render();
      GlobalState *getGlobalStateById(uint);
-  protected:
-     Scene();
   private:
      deque<RenderObject *> objects;
      vector<GlobalState *> globalStates;

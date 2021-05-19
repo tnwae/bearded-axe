@@ -1,5 +1,6 @@
 #include <BA/RenderObject.hh>
 #include <BA/Vector3.hh>
+#include <BA/GlobalState.hh>
 #include <iostream>
 #include <utility>
 #include <vector>
@@ -15,6 +16,10 @@ namespace BA {
         vertexNormals = new std::vector<Vector3<float> *>;
 
         loadGeometryFromFile(_filename);
+    }
+
+    void RenderObject::setRenderContext(GlobalState *gs) {
+      this->renderContext = gs;
     }
 
     /**
@@ -37,12 +42,14 @@ namespace BA {
     }
 
     void RenderObject::renderInitCallback() {
+      Vector3<float> *light = this->renderContext->getLight();
+      GLfloat pos[] = {light->x, light->y, light->z, 0};
+
       glPolygonMode(GL_FRONT, GL_FILL);
-      glLightfv(this->lightSource, GL_POSITION,
-          this->centerCoord->toArray().get());
-      glLightfv(this->lightSource, GL_DIFFUSE, this->diffuseLight);
-      glLightfv(this->lightSource, GL_SPECULAR, this->specularLight);
-      glLightfv(this->lightSource, GL_AMBIENT, this->ambientLight);
+      glLightfv(GL_LIGHT0, GL_POSITION, pos);
+      glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, this->diffuseLight);
+      glMaterialfv(GL_FRONT, GL_SPECULAR, this->specularLight);
+      //glMaterialfv(GL_LIGHT0, GL_AMBIENT, this->ambientLight);
       glMaterialfv(GL_FRONT, GL_SHININESS, &(this->shininess));
       glTranslatef(this->centerCoord->x, this->centerCoord->y,
           this->centerCoord->z);

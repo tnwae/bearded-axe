@@ -3,6 +3,7 @@
 
 #include <BA.hh>
 #include <BObject.hh>
+#include "GlobalState.hh"
 #include "Vector3.hh"
 
 #include <iostream>
@@ -26,6 +27,8 @@ namespace BA {
 
     void render();
     virtual void renderOpCallback() = 0;
+
+    void setRenderContext(GlobalState *);
 
   private:
     void preRenderCallback();
@@ -74,6 +77,8 @@ namespace BA {
     Vector3<float> *getFacetAt(int);
     Vector3<float> *getSurfaceNormalAt(int);
     Vector3<float> *getVertexNormalAt(int);
+
+    GlobalState *renderContext;
   };
 }
 
