@@ -20,14 +20,16 @@ static int oldy = -1;
 
 static void RotationCallback(GLfloat angle, GLfloat x, GLfloat y,
     GLfloat z) {
-  char axis;
+  char axis __attribute__ ((unused));
 
   axis = ((x == 1. && y == 0. && z == 0.) ? 'x' :
           (x == 0. && y == 1. && z == 0.) ? 'y' :
           (x == 0. && y == 0. && z == 1.) ? 'z' : '\0');
 
-  BA::DebugMessage("%s: rotating view by %f degrees in %c-axis\n",
+/*
+   BA::DebugMessage("%s: rotating view by %f degrees in %c-axis\n",
       __func__, angle, axis);
+ */
 
   glRotatef(angle, x, y, z);
 }
