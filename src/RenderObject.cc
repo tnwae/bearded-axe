@@ -29,6 +29,9 @@ namespace BA {
       if(!renderTargetReached) {
         DebugMessage("%s: render target reached for %s\n", __func__,
             this->toString().c_str());
+        DebugMessage("%s: render object %s using global state %s\n",
+            __func__, this->toString().c_str(),
+            this->renderContext->toString().c_str());
         renderTargetReached = true;
       }
       RenderObject::preRenderCallback();

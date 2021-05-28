@@ -97,5 +97,9 @@ namespace BA {
   void GlobalState::setStateType(int _stateType) {
     stateType = _stateType;
   }
+
+  string GlobalState::toString() {
+    return name;
+  }
 }
 

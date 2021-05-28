@@ -36,6 +36,7 @@ namespace BA {
        void setLight(float, float, float);
 
        void setName(string);
+       string toString();
 
        int getStateType();
        void setStateType(int);
