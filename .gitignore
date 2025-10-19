@@ -23,3 +23,6 @@ a.out
 .project
 .cproject
 .settings
+
+# Mac crap
+.DS_Store
