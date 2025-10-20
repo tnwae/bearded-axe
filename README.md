@@ -1,7 +1,5 @@
 # About Bearded Axe
 
-[![endorse](https://api.coderwall.com/tnwae/endorsecount.png)](https://coderwall.com/tnwae)
-
 Bearded Axe is a simple generic OpenGL renderer written in clean, pure
 C++.  I aim to use as few plain-C features as possible.
 
@@ -23,51 +21,31 @@ Bearded Axe is licensed under the GPLv3.
 
 # Building Bearded Axe
 
-## Prerequisites (Linux/BSD/other Unixen)
+## Prerequisites (Linux)
 
 You need, at the very minimum, the proper development libraries.  These
 include the development versions of `libGL`, `libGLU`, and `freeglut`.
+The manner in which you get these will differe based on your distro.
 
 You also need the following utilities:
 
-- The GNU C++ compiler, `g++`, version 4.7 for decent C++11 support.
+- The GNU C++ compiler, `g++`, at minimum version 4.7 for decent C++11 support.
 - GNU Make (any recent version should work)
-- (Someday) Automake/Autoconf
 
 Installing the C++ compiler should give you the development libraries for
 C++.  If for some reason they don't, you'll need to install them by hand.
 
-## Prerequisites (Mac OS X)
+## Prerequisites (macOS)
 
-Mac OS is the easiest platform to build on with just a few prerequisites:
-
-- Xcode
-- Boost
-- GCC 4.7
-
-GCC 4.7 is the only hard prerequisite, and according to [this Stack Overflow thread][so-gcc],
-you should be able to run 4.7 on your Mac without any issues.  (Do, however, see
-[MacPorts' Trac][mptrac] for more details on choosing a compiler for your Mac.)
-Mac support for GCC 4.7 _may_ be Intel-only, although I doubt this matters much
-anymore.
-
-[so-gcc]: http://stackoverflow.com/questions/14534584/change-gcc-version-to-4-7-on-mac-os-x
-[mptrac]: https://trac.macports.org/wiki/UsingTheRightCompiler
-
-I no longer have a Mac suitable for testing and no particular desire to buy one.
+0. Download Parallels Desktop or UTM.
+1. Install Linux.
+2. Follow the Linux instructions above.
 
 ## Prerequisites (Windows)
 
-Likely prereqs for Windows (these are the files I have downloaded to my Windows box):
-
-- Mesa3D 9.1.2
-- Freeglut 2.8.1
-- TDM-GCC 4.7.1-2 (or TDM-GCC64 4.7.1-3)
-- Boost 1.53
-
-Because Windows and OpenGL aren't the best of friends, you have to do more
-work yourself.  This includes installing a suitable compiler and development
-libraries.  More as it comes.
+0. Format your hard drive.
+1. Install Linux.
+2. Follow the Linux instructions above.
 
 # External libraries included with Bearded Axe
 
